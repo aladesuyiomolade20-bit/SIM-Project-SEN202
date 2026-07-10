@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SIM - Campus Incident Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-banner">
+        <h2>Report Incident/Crime</h2>
+        <p>An anonymous platform to report incidents and view crime patterns around campus</p>
+    </header>
+
+    <div class="map-panel">
+        <h4>Live Incident Map Frame</h4>
+        <div class="geo-container">
+            <div class="radar-ping"></div>
+            <p id="mapMetaText">Click submit to log an incident and plot it live on this map grid</p>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <div class="panel" id="entryPanel">
+            <h4>Log Incident Report</h4>
+            <form id="crimeForm">
+                <label class="field-lbl">Your Community Role:</label>
+                <select id="userClass" class="custom-select" required>
+                    <option value="Student">Student</option>
+                    <option value="Staff">Staff</option>
+                    <option value="Landlord">Landlord</option>
+                </select>
+
+                <label class="field-lbl">Type of Threat/Crime:</label>
+                <select id="infractionType" class="custom-select" required>
+                    <option value="Stealing">Stealing / Petty Theft</option>
+                    <option value="Bullying">Bullying</option>
+                    <option value="Physical Assault / Stabbing">Physical Assault / Stabbing</option>
+                    <option value="Sexual Assault / Rape">Sexual Assault / Rape</option>
+                    <option value="Murder Case">Murder Case</option>
+                </select>
+
+                <label class="field-lbl">Location (Campus Zone or Villa Name):</label>
+                <input type="text" id="sceneLocation" class="custom-input" placeholder="e.g., Kofo Hall, Jaja Area" required>
+
+                <label class="field-lbl">Incident Description:</label>
+                <textarea id="narrativeDetails" class="custom-textarea" rows="3" placeholder="Provide details about what happened..."></textarea>
+
+                <div id="identityFields">
+                    <label class="field-lbl">Reporter Full Name:</label>
+                    <input type="text" id="reporterName" class="custom-input" placeholder="Enter name">
+
+                    <label class="field-lbl">Department Name:</label>
+                    <input type="text" id="reporterDept" class="custom-input" placeholder="e.g., Creative Arts">
+                </div>
+
+                <div class="anon-wrapper">
+                    <input type="checkbox" id="anonCheck">
+                    <label for="anonCheck" class="checkbox-lbl">Report Anonymously</label>
+                </div>
+
+                <button type="button" id="dispatchBtn" class="action-btn">Submit Secure Report</button>
+            </form>
+        </div>
+
+        <div class="panel success-card" id="receiptPanel">
+            <div class="shield-badge">✓</div>
+            <h3>Report Submitted Successfully</h3>
+            <p>Thank you for making the community safer. The report has been added to the local incident map database below.</p>
+            <div class="hash-box">
+                <span class="hash-title">VERIFICATION REFERENCE HASH</span>
+                <div id="tokenOutput">SIM-2026-0000</div>
+            </div>
+            <button type="button" id="returnBtn" class="reset-btn">File Another Report</button>
+        </div>
+
+        <div class="panel">
+            <h4>Recent Filed Reports</h4>
+            <table class="report-ledger">
+                <thead>
+                    <tr>
+                        <th>Context</th>
+                        <th>Location</th>
+                        <th>Source Profiling</th>
+                    </tr>
+                </thead>
+                <tbody id="ledgerRows">
+                    <tr><td>Bullying <br><small style="color: #10b981;">Ref: SIM-2026-INIT</small></td><td>Kofo Hall</td><td>Anonymous (Student)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
